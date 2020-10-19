@@ -1,0 +1,49 @@
+{% extends 'barraMenu.html.twig' %}
+
+{% block title %}Hello AdminOfertaController!{% endblock %}
+
+{% block body %}
+
+    <table class="table table-hover">
+        <thead>
+            <tr>
+            <th scope="col">Id</th>
+            <th scope="col">Titulo</th>
+            <th scope="col">Descripcion</th>
+            <th scope="col">Fecha</th>
+            <th scope="col">Empresa</th>
+            <th scope="col"><a class="btn btn-primary"
+                                href="{{path("admin_oferta_add")}}">
+                                Añadir
+                            </a></th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for oferta in ofertas %}
+                <tr>
+                <th scope="row">{{oferta.id}}</th>
+                <td>{{oferta.titulo}}</td>
+                <td>{{oferta.descripcion}}</td>
+                <td>{{oferta.data_pub|date("Y/m/d")}}</td>
+                <td>{{oferta.empresaNombre}}</td>
+                <th scope="col">
+                    <a class="btn btn-primary"
+                        href="{{path("admin_oferta_modif",
+                            {'id': oferta.id}
+                        )}}">
+                        Modificar
+                    </a>
+                    <a class="btn btn-primary"
+                        href="{{path("admin_oferta_elim",
+                            {'id': oferta.id}
+                        )}}">
+                        Eliminar
+                    </a>
+                </th>
+                </tr>
+            {% endfor %}
+            
+        </tbody>
+    </table>
+    
+{% endblock %}
